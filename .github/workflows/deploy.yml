@@ -17,4 +17,5 @@ jobs:
       run: |
         echo "$SECRET_KEY" > secret_key
         chmod 600 secret_key
-        ssh -i secret_key ec2-user@ec2-52-15-162-76.us-east-2.compute.amazonaws.com
+        ssh -vvv -oStrictHostKeyChecking=no -i secret_key ${EC2_USER}@${EC2_HOST} "cd ~/deploy-test2 && sudo git pull origin master"
+        
