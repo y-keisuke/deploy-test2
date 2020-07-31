@@ -17,5 +17,5 @@ jobs:
       run: |
         echo "$SECRET_KEY" > secret_key
         chmod 600 secret_key
-        ssh -vvv -oStrictHostKeyChecking=no -i secret_key ${EC2_USER}@${EC2_HOST} "cd ~/deploy-test2 && sudo git pull origin master"
-        
+        ssh -vvv -oStrictHostKeyChecking=no -i secret_key ${EC2_USER}@${EC2_HOST} "cd ~/deploy-test2 && sudo git pull origin master && sudo go build main.go && sudo ./main"
+
