@@ -2,14 +2,21 @@ package main
 
 import (
 	"fmt"
+	"net"
 	"net/http"
+	"net/http/fcgi"
 )
 
-func handler(writer http.ResponseWriter, request *http.Request) {
-	fmt.Fprintf(writer, "Hello World,, %s!", request.URL.Path[1:])
+func handler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hello, World!")
 }
 
 func main() {
+	l, err := net.Listen("tcp", "127.0.0.1:9000")
+	if err != nil {
+		return
+	}
 	http.HandleFunc("/", handler)
-	http.ListenAndServe(":9000", nil)
+	fcgi.Serve(l, nil)
 }
+
