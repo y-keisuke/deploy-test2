@@ -3,5 +3,5 @@
 sudo git pull origin master
 sudo go build main.go
 sudo pkill main
-./main &
+./main > /dev/null
 ls
